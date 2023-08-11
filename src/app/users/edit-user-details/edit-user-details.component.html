@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+  <div class="form-container">
+    <h2>New User Form</h2>
+    <form (ngSubmit)="saveEditedUser()">
+      <div>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" [(ngModel)]="user.name" />
+        <input hidden type="text" id="id" name="id" [(ngModel)]="user.id" />
+      </div>
+      <div>
+        <label for="city">City:</label>
+        <input type="text" id="city" name="city" [(ngModel)]="user.city" />
+      </div>
+      <div>
+        <label for="country">Country:</label>
+        <input type="text" id="country" name="country" [(ngModel)]="user.country" />
+      </div>
+      <!-- Add other form controls based on your user data structure -->
+      <button type="submit">Update</button>
+    </form>
+  </div>
+</body>
+
+</html>

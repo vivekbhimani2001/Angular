@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <div class="form-container">
+        <h2>New User Form</h2>
+        <form #userForm="ngForm" (ngSubmit)="getUserDetail(userForm.value)">
+            <label for="name">Name:</label>
+            <input ngModel placeholder="Name" name="name" type="text" id="name" />
+
+            <label for="city">City:</label>
+            <input ngModel placeholder="City" name="city" type="text" id="city" />
+
+            <label for="country">Country:</label>
+            <input ngModel placeholder="Country" name="country" type="text" id="country" />
+
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+</body>
+</html>
