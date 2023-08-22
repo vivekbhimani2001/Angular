@@ -38,7 +38,7 @@
                 <td>{{item.name}}</td>
                 <td>{{item.city}}</td>
                 <td>{{item.country}}</td>
-                <td><button class="btn btn-primary m-2" [routerLink]="['/users/edituser', item.id]">Edit</button><button class="btn btn-primary m-2" (click)= "UserDelete(item.id)">Delete</button></td>
+                <td><button class="btn btn-primary m-2" [routerLink]="['/users/edituser', item.id]">Edit</button><button class="btn btn-primary m-2" (click)= "confirmUserDelete(item.id)">Delete</button></td>
             </tr>
         </table>
     </div>

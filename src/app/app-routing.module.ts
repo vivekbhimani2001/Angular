@@ -12,36 +12,28 @@ const routes: Routes = [
     path:'',
     component:HomeComponent
   },
-  // {
-  //   // path:'user/:id',
-  //   path:'user',
-  //   component:UserComponent,
-  //   },
-  //   {
-  //     path:'user/userdetails',
-  //     component:UserDetailsComponent,
-  //   },
-  //   {
-  //     path: 'edituser/:id',
-  //     component:EditUserDetailsComponent
-  //   },
-    {
+  {
       path:'about',
       component:AboutComponent
-    },
-    {
+  },
+  {
       path: 'products',
       loadChildren: () =>
         import('./products/products.module').then((m) => m.ProductsModule),
-    },
-    {
+  },
+  {
      path:'users',
      loadChildren: () => import('./users/users.module').then((m) => m.UsersModule)
-    },
-    {
+  },
+  {
+    path:'auth',
+    loadChildren: () => import('./user-auth/user-auth.module').then((m)=>m.UserAuthModule)
+
+  },
+  {
       path:"**",
       component:PageNotFoundComponent
-    },
+  },
 ];
 
 @NgModule({
