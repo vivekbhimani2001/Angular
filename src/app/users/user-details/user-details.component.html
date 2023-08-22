@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +8,30 @@
 <body>
     <div class="form-container">
         <h2>New User Form</h2>
-        <form #userForm="ngForm" (ngSubmit)="getUserDetail(userForm.value)">
+        <form [formGroup]="userDetailForm" (ngSubmit)="onSubmit()">
+            <label for="name">Name:</label>
+            <input placeholder="Name" name="name" type="text" id="name" formControlName="name" />
+            <div *ngIf="userDetailForm.get('name')?.hasError('required') && userDetailForm.get('name')?.touched"
+                class="error-message">
+                Name is required.
+            </div>
+
+            <label for="city">City:</label>
+            <input placeholder="City" name="city" type="text" id="city" formControlName="city" />
+            <div *ngIf="userDetailForm.get('city')?.hasError('required') && userDetailForm.get('city')?.touched"
+                class="error-message">
+                City is required.
+            </div>
+
+            <label for="country">Country:</label>
+            <input placeholder="Country" name="country" type="text" id="country" formControlName="country" />
+            <div *ngIf="userDetailForm.get('country')?.hasError('required') && userDetailForm.get('country')?.touched"
+                class="error-message">
+                Country is required.
+            </div>
+            <input type="submit" value="Submit">
+        </form>
+        <!-- <form #userForm="ngForm" (ngSubmit)="getUserDetail(userForm.value)">
             <label for="name">Name:</label>
             <input ngModel placeholder="Name" name="name" type="text" id="name" />
 
@@ -18,7 +42,8 @@
             <input ngModel placeholder="Country" name="country" type="text" id="country" />
 
             <input type="submit" value="Submit">
-        </form>
+        </form> -->
     </div>
 </body>
+
 </html>

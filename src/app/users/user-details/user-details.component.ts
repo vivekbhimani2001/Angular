@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { UserDataService } from '../../services/user-data.service';
 import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 
 @Component({
@@ -8,18 +9,34 @@ import { Router } from '@angular/router';
   templateUrl: './user-details.component.html',
   styleUrls: ['./user-details.component.css']
 })
-export class UserDetailsComponent {
+export class UserDetailsComponent implements OnInit {
 
-  constructor(private userData:UserDataService,private router:Router){
+userDetailForm!:FormGroup;
+
+  constructor(private userData:UserDataService,private router:Router, private formBuilder:FormBuilder){
 
   }
 
-  getUserDetail(data:any){
-     console.log(data,"FormData");
-     this.userData.Adduser(data).subscribe((result) => {
-     console.log(result,"Data Sucessfully Added.")
-     this.router.navigate(['/users/user'])
-     });
+  userDetails = {
+    name:'',
+    city:'',
+    country:''
   }
 
+  ngOnInit(): void {
+    this.userDetailForm = this.formBuilder.group({
+      name:['',Validators.required],
+      city:['',Validators.required],
+      country:['',Validators.required]
+    })
+  }
+
+  onSubmit(){
+    if(this.userDetailForm.valid){
+    //console.log(this.userDetailForm.value)
+    this.userData.Adduser(this.userDetailForm.value).subscribe((result) => {
+      this.router.navigate(['/users/user'])
+      });
+    }
+  }
 }

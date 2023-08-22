@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Form Example</title>
+</head>
+<body>
+    <form [formGroup]="employeeEditForm"  enctype="multipart/form-data" (ngSubmit)="onSubmit()">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" formControlName="PersonName" required>
+
+        <label for="city">City:</label>
+        <input type="text" id="city" name="city" formControlName="City" required>
+
+        <label for="file">Upload File:</label>
+        <input type="file" id="file" name="file" formControlName="UploadedFile">
+        
+     
+        <!-- <img *ngIf="filepath" [src]="FilePath" alt="File Preview" class="file-preview" formControlName="FilePath" /> -->
+
+          
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
+
+

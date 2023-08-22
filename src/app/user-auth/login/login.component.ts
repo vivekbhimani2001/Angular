@@ -8,6 +8,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
+
 export class LoginComponent implements OnInit {
 
   userForm!:FormGroup;
@@ -19,8 +20,7 @@ export class LoginComponent implements OnInit {
  
 
   ngOnInit(): void {
-
-    this.userForm = this.formBuilder.group({
+      this.userForm = this.formBuilder.group({
       username: ['',[Validators.required]],
       password: ['',[Validators.required]]
     })

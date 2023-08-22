@@ -5,8 +5,41 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-
 <body>
+  <div class="form-container">
+      <h2>New User Form</h2>
+      <form [formGroup]="editUserDetail" (ngSubmit)="onSubmit()">
+          <label for="name">Name:</label>
+          <input placeholder="Name" name="name" type="text" id="name" formControlName="name" />
+          <!-- <div *ngIf="userDetailForm.get('name')?.hasError('required') && userDetailForm.get('name')?.touched"
+              class="error-message">
+              Name is required.
+          </div> -->
+
+          <label for="city">City:</label>
+          <input placeholder="City" name="city" type="text" id="city" formControlName="city" />
+          <!-- <div *ngIf="userDetailForm.get('city')?.hasError('required') && userDetailForm.get('city')?.touched"
+              class="error-message">
+              City is required.
+          </div> -->
+
+          <label for="country">Country:</label>
+          <input placeholder="Country" name="country" type="text" id="country" formControlName="country" />
+          <!-- <div *ngIf="userDetailForm.get('country')?.hasError('required') && userDetailForm.get('country')?.touched"
+              class="error-message">
+              Country is required.
+          </div> -->
+          <input type="submit" value="Submit">
+      </form>
+  </div>
+</body>
+
+
+</html>
+
+
+
+<!-- <body>
   <div class="form-container">
     <h2>New User Form</h2>
     <form (ngSubmit)="saveEditedUser()">
@@ -23,10 +56,7 @@
         <label for="country">Country:</label>
         <input type="text" id="country" name="country" [(ngModel)]="user.country" />
       </div>
-      <!-- Add other form controls based on your user data structure -->
       <button type="submit">Update</button>
     </form>
   </div>
-</body>
-
-</html>
+</body> -->

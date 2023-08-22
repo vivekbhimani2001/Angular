@@ -26,6 +26,10 @@ const routes: Routes = [
      loadChildren: () => import('./users/users.module').then((m) => m.UsersModule)
   },
   {
+   path:'employees',
+   loadChildren: () => import('./employee/employee.module').then((m) => m.EmployeeModule)
+  },
+  {
     path:'auth',
     loadChildren: () => import('./user-auth/user-auth.module').then((m)=>m.UserAuthModule)
 

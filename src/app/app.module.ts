@@ -13,6 +13,7 @@ import { AdminDetailsComponent } from './admin-details/admin-details.component';
 import { ProductsModule } from './products/products.module';
 import { UsersModule } from './users/users.module';
 import { ToastrModule } from 'ngx-toastr';
+import { EmployeeModule } from './employee/employee.module';
 
 
 
@@ -21,13 +22,10 @@ import { ToastrModule } from 'ngx-toastr';
     AppComponent,
     HomeComponent,
     AboutComponent,
-   // UserComponent,
     PageNotFoundComponent,
-   // UserDetailsComponent,
     AdminDetailsComponent,
-    //EditUserDetailsComponent,
-    
   ],
+  
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -37,6 +35,7 @@ import { ToastrModule } from 'ngx-toastr';
     FormsModule,
     ProductsModule,
     UsersModule,
+    EmployeeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

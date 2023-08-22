@@ -8,7 +8,8 @@ export class UserDataService {
 
   //url = "https://jsonplaceholder.typicode.com/users"
   //url = "http://172.16.0.42:5298/api/PersonalDetails"
-  url = "http://192.168.4.157/api/PersonalDetails"
+  
+  url = "http://172.16.0.194/api/PersonalDetails"
   constructor(private http:HttpClient) { }
   
   getusers(){
