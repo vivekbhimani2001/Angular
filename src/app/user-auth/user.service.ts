@@ -6,8 +6,8 @@ import { Injectable } from '@angular/core';
 })
 export class UserService {
 
-  registerurl = "http://192.168.4.157/api/UserAuth/register"
-  loginurl = "http://192.168.4.157/api/UserAuth/login"
+  registerurl = "http://192.168.4.150/api/UserAuth/register"
+  loginurl = "http://192.168.4.150/api/UserAuth/login"
 
   authTokenKey='Auth-Token';
 

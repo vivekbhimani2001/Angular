@@ -4,6 +4,7 @@ import { UserDataService } from '../../services/user-data.service';
 import { ToastrService } from 'ngx-toastr';
 
 import { Injectable } from '@angular/core';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-user',
@@ -17,6 +18,10 @@ import { Injectable } from '@angular/core';
 export class UserComponent implements OnInit {
 
   userData: any[] = [];
+  itemsToDisplay: any[] = [];
+  currentPage = 1;
+  pageSize = 4; // Set your desired page size here
+  totalPages = 0;
 
   constructor(
     private route: ActivatedRoute, 
@@ -31,27 +36,49 @@ export class UserComponent implements OnInit {
     this.userdata.getusers().subscribe((data: any) => {
       if (data.isSuccess && Array.isArray(data.result)) {
         this.userData = data.result;
+        this.totalPages = Math.ceil(this.userData.length / this.pageSize);
+       this.setPage(1);
       }
     });
   }
 
+  setPage(page: number) {
+    if (page >= 1 && page <= this.totalPages) {
+      this.currentPage = page;
+      const startIndex = (this.currentPage - 1) * this.pageSize;
+      const endIndex = startIndex + this.pageSize;
+      this.itemsToDisplay = this.userData.slice(startIndex, endIndex);
+    }
+  }
+
+
   confirmUserDelete(userId: number) {
-    this.toastr.warning(
-      'Are you sure you want to delete this user?', 
-      'Confirm Deletion', 
-      {
-        closeButton: true,
-        timeOut: 10000, // Adjust the timeout for user confirmation
-        positionClass: 'toast-top-center', // Adjust the position
-        tapToDismiss: false // Prevent dismissing by clicking outside
-      }
-    )
-    .onTap // Handle user interaction
-    .subscribe((action:any) => {
-      if (action) {
+    Swal.fire({
+      title: 'Are you sure want to remove?',
+      text: 'You will not be able to recover this file!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'No, keep it'
+    }).then((result) => {
+      if (result.value) {
         this.UserDelete(userId);
+        Swal.fire(
+          'Deleted!',
+          'User has been deleted.',
+          'success'
+        )
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        Swal.fire(
+          'Cancelled',
+          'Your User is safe :)',
+          'error'
+        )
       }
-    });
+    })
+    //
+      
+   
   }
 
   UserDelete(userId: number) {

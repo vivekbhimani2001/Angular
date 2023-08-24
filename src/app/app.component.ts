@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from './user-auth/user.service';
+import { NotificationService } from './services/notification-service.service';
 
 
 @Component({
@@ -15,7 +16,7 @@ export class AppComponent{
 
 
   
-  constructor(private router: Router, private authService:UserService){}
+  constructor(private router: Router, private authService:UserService,private notificationService:NotificationService){}
 
   get IsLoggedIn(): boolean {
     return this.authService.isAuthenticated();
@@ -26,5 +27,6 @@ export class AppComponent{
   UserLogout(){
     localStorage.removeItem("Auth-Token");
     this.router.navigate(['auth/login'])
+    this.notificationService.showSuccess("User Logout Sucessfully.","User-Logout")
   }
 }

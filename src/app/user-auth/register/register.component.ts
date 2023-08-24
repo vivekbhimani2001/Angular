@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { NotificationService } from 'src/app/services/notification-service.service';
 
 @Component({
   selector: 'app-register',
@@ -11,7 +13,7 @@ export class RegisterComponent implements OnInit {
 
   registerForm!:FormGroup;
 
-  constructor(private userRegister: UserService, private formBuilder: FormBuilder){}
+  constructor(private userRegister: UserService, private formBuilder: FormBuilder,private router:Router,private notificationService:NotificationService){}
 
   user = {
     name: '',
@@ -35,7 +37,11 @@ export class RegisterComponent implements OnInit {
 
     if(this.registerForm.valid){
       console.log(this.registerForm.value)
-      this.userRegister.UserRegister(this.registerForm.value).subscribe((result:any)=>console.log(result))
+      this.userRegister.UserRegister(this.registerForm.value).subscribe((result:any)=>console.log(result));
+      this.router.navigate(['auth/login'])
+      this.notificationService.showSuccess("User Registration Successfully","Registration")
+
+
     }
     // Here you can access the form values in the 'user' object
     //console.log('Submitted User:', this.user);

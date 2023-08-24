@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NotificationService } from 'src/app/services/notification-service.service';
 
 @Component({
   selector: 'app-login',
@@ -13,9 +14,7 @@ export class LoginComponent implements OnInit {
 
   userForm!:FormGroup;
 
-  constructor(private userLogin: UserService, private router: Router, private formBuilder: FormBuilder) {
-
-  }
+  constructor(private userLogin: UserService, private router: Router, private formBuilder: FormBuilder,private notificationService:NotificationService) {}
 
  
 
@@ -38,6 +37,7 @@ export class LoginComponent implements OnInit {
 
       // Redirect to the desired route
       this.router.navigate(['users/user']);
+      this.notificationService.showSuccess("User Login Sucessfully","Login-User")
     });
   }
   }

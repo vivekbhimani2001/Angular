@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { EmployeeService } from '../service.service';
+import { Router } from '@angular/router';
+import { NotificationService } from 'src/app/services/notification-service.service';
 
 @Component({
   selector: 'app-add-employee',
@@ -13,18 +15,15 @@ export class AddEmployeeComponent {
   selectedFile: File | null = null;
   filePreview: string | ArrayBuffer | null = null;
 
-  constructor(private formBuilder: FormBuilder, private employeeservice: EmployeeService) {
+  constructor(private formBuilder: FormBuilder, private employeeservice: EmployeeService,private router:Router,private notificationService:NotificationService) {
 
     this.addEmployeeForm = this.formBuilder.group({
       PersonName: ['', Validators.required],
       City: ['', Validators.required],
       UploadedFile: [null, Validators.required]
-
     })
 
   }
-
-
 
   onFileSelected(event: any) {
     this.selectedFile = event.target.files[0] as File;
@@ -45,7 +44,7 @@ export class AddEmployeeComponent {
       this.filePreview = null;
     }
   }
-
+  
   onSubmit() {
     if (this.addEmployeeForm.valid) {
       const formData: any = new FormData();
@@ -55,6 +54,10 @@ export class AddEmployeeComponent {
 
       // Call your service to upload the file and include the formData
       this.employeeservice.AddEmployee(formData).subscribe((result) => console.log(result));
+
+      this.router.navigate(['employees/employee'])
+      this.notificationService.showSuccess("Employee Added Successfully.","Add-Employee");
+
     } else {
       console.log('Form is not valid.');
     }

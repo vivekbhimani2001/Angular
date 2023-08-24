@@ -33,7 +33,7 @@
                 <th>Country</th>
                 <th>Action</th>
             </tr>
-            <tr *ngFor="let item of userData">
+            <tr *ngFor="let item of itemsToDisplay">
                 <td>{{item.id}}</td>
                 <td>{{item.name}}</td>
                 <td>{{item.city}}</td>
@@ -42,5 +42,11 @@
             </tr>
         </table>
     </div>
+
+    <div class="pagination">
+        <button class="btn btn-primary" (click)="setPage(currentPage - 1)" [disabled]="currentPage === 1">Previous</button>
+        <span>Page {{ currentPage }} of {{ totalPages }}</span>
+        <button class="btn btn-primary" (click)="setPage(currentPage + 1)" [disabled]="currentPage === totalPages">Next</button>
+      </div>
 </body>
 </html>

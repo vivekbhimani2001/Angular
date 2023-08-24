@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserDataService } from '../../services/user-data.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NotificationService } from 'src/app/services/notification-service.service';
 
 
 @Component({
@@ -17,7 +18,7 @@ export class EditUserDetailsComponent implements OnInit {
   editUserDetail!:FormGroup
  
 
-  constructor(private route: ActivatedRoute, private userData: UserDataService, private router:Router,private formBuilder:FormBuilder) { }
+  constructor(private route: ActivatedRoute, private userData: UserDataService, private router:Router,private formBuilder:FormBuilder,private notificationService:NotificationService) { }
   
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -59,6 +60,7 @@ export class EditUserDetailsComponent implements OnInit {
       this.userData.editUser(this.userId,this.user).subscribe((result) => {
         console.log(result,"Data UpdateSuccessFully..")
         this.router.navigate(['/users/user'])
+        this.notificationService.showSuccess("User update sucessfully","Update-User")
       })
     }
   }

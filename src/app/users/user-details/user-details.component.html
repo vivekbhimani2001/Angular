@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
+
 <body>
     <div class="form-container">
         <h2>New User Form</h2>
@@ -29,21 +30,21 @@
                 class="error-message">
                 Country is required.
             </div>
+        
             <input type="submit" value="Submit">
         </form>
-        <!-- <form #userForm="ngForm" (ngSubmit)="getUserDetail(userForm.value)">
-            <label for="name">Name:</label>
-            <input ngModel placeholder="Name" name="name" type="text" id="name" />
-
-            <label for="city">City:</label>
-            <input ngModel placeholder="City" name="city" type="text" id="city" />
-
-            <label for="country">Country:</label>
-            <input ngModel placeholder="Country" name="country" type="text" id="country" />
-
-            <input type="submit" value="Submit">
-        </form> -->
     </div>
 </body>
 
 </html>
+
+
+    <!-- <label>
+            <input type="checkbox" [value]="'Value1'" (change)="onCheckboxChange($event)" formControlName="selectedValues"> Value 1
+              </label>
+              <label>
+                <input type="checkbox" [value]="'Value2'" (change)="onCheckboxChange($event)" formControlName="selectedValues"> Value 2
+              </label>
+              <label>
+                <input type="checkbox" [value]="'Value3'" (change)="onCheckboxChange($event)" formControlName="selectedValues"> Value 3
+            </label> -->

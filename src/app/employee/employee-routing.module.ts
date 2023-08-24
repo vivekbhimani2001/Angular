@@ -24,6 +24,7 @@ const routes: Routes = [
   declarations: [],
   imports: [
     RouterModule.forChild(routes)
-  ]
+  ],
+  exports: [RouterModule]
 })
 export class EmployeeRoutingModule { }
