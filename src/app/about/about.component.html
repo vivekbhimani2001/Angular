@@ -1,1 +1,204 @@
-<p>about works!</p>
+<mat-form-field>
+  <input matInput (keyup)="applyFilter($event)" placeholder="Search">
+</mat-form-field>
+
+<mat-table [dataSource]="dataSource" matSort>
+    <!-- Define your table columns -->
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>ID</mat-header-cell>
+      <mat-cell *matCellDef="let item">{{ item.id }}</mat-cell>
+    </ng-container>
+  
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Name</mat-header-cell>
+      <mat-cell *matCellDef="let item">{{ item.name }}</mat-cell>
+    </ng-container>
+  
+    <ng-container matColumnDef="price">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Price</mat-header-cell>
+      <mat-cell *matCellDef="let item">{{ item.price }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="modelNo">
+      <mat-header-cell *matHeaderCellDef>Model</mat-header-cell>
+      <mat-cell *matCellDef="let item">{{ item.modelNo }}</mat-cell>
+    </ng-container>
+  
+    <!-- Add more columns as needed -->
+  
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row (click)="LogData(row)" *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+
+  <mat-paginator [pageSizeOptions]="[5,10,15]" showFirstLastButtons></mat-paginator>
+
+
+  <!-- Topography -->
+
+  <div class="mat-typography">
+ <h1>Hello Guys</h1>
+ <h2>Hello Guys</h2>
+ <h3>Hello Guys</h3>
+ <h4>Hello Guys</h4>
+  </div>
+
+  <!-- ToggleButton -->
+
+  <div>
+    <mat-button-toggle #toggleChecked checked>Hello</mat-button-toggle>
+    {{toggleChecked.checked}}
+  </div>
+
+  <div>
+    <mat-button-toggle-group #toggleGroup="matButtonToggleGroup"multiple>
+      <mat-button-toggle value="Angular">Angular</mat-button-toggle>
+      <mat-button-toggle value="React">React</mat-button-toggle>
+      <mat-button-toggle value="Vue">Vue</mat-button-toggle>
+    </mat-button-toggle-group>
+    {{toggleGroup.value}}
+  </div>
+
+  <hr />
+
+  <div class="m-5">
+    <span matBadge="5" matBadgePosition="below before" >Notification</span>
+  </div>
+  <div class="m-5">
+    <span matBadge="5" matBadgeSize="small">Notification</span>
+  </div>
+  <div class="m-5">
+    <span matBadge="5" matBadgeColor="warn" matBadgeOverlap="false">Notification</span>
+  </div>
+  <div class="m-5">
+    <span matBadge="5" [matBadge]="notifications" [matBadgeHidden]="notifications === 0">Notification</span>
+  </div>
+
+  <hr />
+
+  <mat-progress-spinner value="40"></mat-progress-spinner>
+  <mat-spinner *ngIf="SppinerStatus"></mat-spinner>
+  <button (click)="LoadData()">LoadData</button>
+
+  <hr />
+
+  <mat-toolbar color="primary" class="navbar">
+    <div>
+      Angular
+    </div>
+    <div>
+    <span>Home</span>
+    <span>User</span>
+    <span>About</span>
+  </div>
+  </mat-toolbar>
+
+  <hr />
+
+  <mat-sidenav-container>
+    <mat-sidenav #sidenav mode="side" [(opened)]="opened" >
+      <mat-nav-list>
+      <a mat-list-item href="#">Home</a>
+      <a mat-list-item href="#">About</a>
+      <a mat-list-item href="#">Contact</a>
+    </mat-nav-list>
+  </mat-sidenav>
+    <mat-sidenav-content>Main
+      <button (click)="opened = !opened">Toggle</button>
+      <button (click)="sidenav.open()">Open</button>
+      <button (click)="sidenav.close()">Close</button>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+
+
+  <hr />
+
+  <button mat-button [matMenuTriggerFor]="animals">Animal index</button>
+<mat-menu #animals="matMenu">
+  <button mat-menu-item [matMenuTriggerFor]="vertebrates">Vertebrates</button>
+  <button mat-menu-item [matMenuTriggerFor]="invertebrates">Invertebrates</button>
+  <button mat-menu-item [matMenuTriggerFor]="Birds">Birds</button>
+</mat-menu>
+
+<mat-menu #Birds="matMenu">
+<button mat-menu-item>Test1</button>
+<button mat-menu-item>Test1</button>
+<button mat-menu-item>Test1</button>
+</mat-menu>
+
+<mat-menu #vertebrates="matMenu">
+  <button mat-menu-item [matMenuTriggerFor]="fish">Fishes</button>
+  <button mat-menu-item [matMenuTriggerFor]="amphibians">Amphibians</button>
+  <button mat-menu-item [matMenuTriggerFor]="reptiles">Reptiles</button>
+  <button mat-menu-item>Birds</button>
+  <button mat-menu-item>Mammals</button>
+</mat-menu>
+
+<mat-menu #invertebrates="matMenu">
+  <button mat-menu-item>Insects</button>
+  <button mat-menu-item>Molluscs</button>
+  <button mat-menu-item>Crustaceans</button>
+  <button mat-menu-item>Corals</button>
+  <button mat-menu-item>Arachnids</button>
+  <button mat-menu-item>Velvet worms</button>
+  <button mat-menu-item>Horseshoe crabs</button>
+</mat-menu>
+
+<mat-menu #fish="matMenu">
+  <button mat-menu-item>Baikal oilfish</button>
+  <button mat-menu-item>Bala shark</button>
+  <button mat-menu-item>Ballan wrasse</button>
+  <button mat-menu-item>Bamboo shark</button>
+  <button mat-menu-item>Banded killifish</button>
+</mat-menu>
+
+<mat-menu #amphibians="matMenu">
+  <button mat-menu-item>Sonoran desert toad</button>
+  <button mat-menu-item>Western toad</button>
+  <button mat-menu-item>Arroyo toad</button>
+  <button mat-menu-item>Yosemite toad</button>
+</mat-menu>
+
+<mat-menu #reptiles="matMenu">
+  <button mat-menu-item>Banded Day Gecko</button>
+  <button mat-menu-item>Banded Gila Monster</button>
+  <button mat-menu-item>Black Tree Monitor</button>
+  <button mat-menu-item>Blue Spiny Lizard</button>
+  <button mat-menu-item disabled>Velociraptor</button>
+</mat-menu>
+
+<hr />
+
+<mat-nav-list>
+  <a mat-list-item href="#">Home</a>
+  <a mat-list-item href="#">About</a>
+  <a mat-list-item href="#">Contact</a>
+</mat-nav-list>
+
+<hr />
+
+
+<mat-accordion>
+  <mat-expansion-panel hideToggle>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        This is the expansion title
+      </mat-panel-title>
+      <mat-panel-description>
+        This is a summary of the content
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <p>This is the primary content of the panel.</p>
+  </mat-expansion-panel>
+  <mat-expansion-panel (opened)="panelOpenState = true"
+                       (closed)="panelOpenState = false">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Self aware panel
+      </mat-panel-title>
+      <mat-panel-description>
+        Currently I am {{panelOpenState ? 'open' : 'closed'}}
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <p>I'm visible because I am open</p>
+  </mat-expansion-panel>
+</mat-accordion>

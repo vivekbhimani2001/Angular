@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 })
 export class EmployeeService {
 
-  url="http://192.168.4.150/api/File"
+  url="http://172.16.1.131/api/File"
 
   constructor(private http: HttpClient) { }
 

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OTP Verification</title>
+   
+</head>
+<body>
+    <div class="container">
+        <h1>OTP Verification</h1>
+        <form [formGroup]="OtpForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label for="otp">Enter OTP:</label>
+                <input type="text" id="otp" formControlName="Otp">
+        <div *ngIf="OtpForm.get('Otp')?.hasError('required') && OtpForm.get('Otp')?.touched" class="error-message">
+          otp is required.
+        </div>
+            </div>
+            <button type="submit">Verify OTP</button>
+        </form>
+    </div>
+</body>
+</html>
+

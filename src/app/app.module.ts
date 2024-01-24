@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -14,6 +14,10 @@ import { ProductsModule } from './products/products.module';
 import { UsersModule } from './users/users.module';
 import { ToastrModule } from 'ngx-toastr';
 import { EmployeeModule } from './employee/employee.module';
+import { MatTableModule } from '@angular/material/table';
+import { MaterialModule } from './material/material.module';
+import { ServiceInterceptorInterceptor } from './service-interceptor.interceptor';
+
 
 
 
@@ -31,13 +35,19 @@ import { EmployeeModule } from './employee/employee.module';
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    MatTableModule,
     ToastrModule.forRoot(),
     FormsModule,
     ProductsModule,
     UsersModule,
-    EmployeeModule
+    EmployeeModule,
+    MaterialModule
   ],
-  providers: [],
+  providers: [
+    { 
+      provide: HTTP_INTERCEPTORS, useClass:ServiceInterceptorInterceptor , multi:true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

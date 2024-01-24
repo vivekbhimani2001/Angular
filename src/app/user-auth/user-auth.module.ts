@@ -6,13 +6,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
 import { RouterModule } from '@angular/router';
+import { OtpVerifyComponent } from './otp-verify/otp-verify.component';
 
 
 
 @NgModule({
   declarations: [
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    OtpVerifyComponent
   ],
   imports: [
     CommonModule,

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { ProductsRoutingModule } from './products-routing.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -10,7 +11,7 @@ import { ProductsRoutingModule } from './products-routing.module';
     ProductDetailsComponent
   ],
   imports: [
-    CommonModule,ProductsRoutingModule
+    CommonModule,ProductsRoutingModule,ReactiveFormsModule
   ],
   exports:[ProductDetailsComponent]
 })

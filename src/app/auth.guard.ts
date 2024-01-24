@@ -13,12 +13,13 @@ export class AuthGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
-  ): boolean | UrlTree {
+  ): boolean {
     if (this.authService.GetToken()) {
       return true;
     } else {
+      this.router.navigate(['auth/login']);
       // Redirect to the login page or a custom unauthorized page
-      return this.router.createUrlTree(['auth/login']);
+      return false;
     }
   }
 }

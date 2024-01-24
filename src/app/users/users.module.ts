@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 import { UsersRoutingModule } from './users-routing.module';
 import { EditUserDetailsComponent } from './edit-user-details/edit-user-details.component';
@@ -18,6 +19,7 @@ import { UserDetailsComponent } from './user-details/user-details.component';
   imports: [
     CommonModule,
     UsersRoutingModule,
+    NgxPaginationModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule

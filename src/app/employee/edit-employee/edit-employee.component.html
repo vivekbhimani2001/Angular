@@ -15,7 +15,8 @@
         <input type="file" id="file" name="file" formControlName="UploadedFile" (change)="onFileSelected($event)">
         
         <img *ngIf="filePreview" [src]="filePreview" alt="File Preview" class="file-preview" />
-        <!-- <img [src]="'E:\\Vivek\\Vivek\\LoginPractice\\LoginPractice\\wwwroot\\Content\\Image\\23124fb4-87a5-4449-991a-5a70fc39223d_img3.jfif'" alt="File Preview" class="file-preview" /> -->
+
+        <!-- <img [attr.src]="'E:\Vivek\Vivek\LoginPractice\LoginPractice\wwwroot\Content\Image\d243bc6c-9c3f-4988-80d2-c8f46b65249c_img3.jfif'" alt="File Preview" class="file-preview" /> -->
         <input type="submit" value="Submit">
     </form>
 </body>

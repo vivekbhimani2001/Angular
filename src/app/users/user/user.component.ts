@@ -17,11 +17,14 @@ import Swal from 'sweetalert2';
 })
 export class UserComponent implements OnInit {
 
-  userData: any[] = [];
-  itemsToDisplay: any[] = [];
-  currentPage = 1;
-  pageSize = 4; // Set your desired page size here
-  totalPages = 0;
+  items : any[] = [];
+  // itemsToDisplay: any[] = [];
+  // currentPage = 1;
+  // pageSize = 4; // Set your desired page size here
+  // totalPages = 0;
+  pagedItems = [];
+  pageSize = 4; // Number of items per page
+  currentPage = 1; // Current page number
 
   constructor(
     private route: ActivatedRoute, 
@@ -35,21 +38,21 @@ export class UserComponent implements OnInit {
   fetchUser() {
     this.userdata.getusers().subscribe((data: any) => {
       if (data.isSuccess && Array.isArray(data.result)) {
-        this.userData = data.result;
-        this.totalPages = Math.ceil(this.userData.length / this.pageSize);
-       this.setPage(1);
+        this.items = data.result;
+        //this.totalPages = Math.ceil(this.userData.length / this.pageSize);
+       //this.setPage(1);
       }
     });
   }
 
-  setPage(page: number) {
-    if (page >= 1 && page <= this.totalPages) {
-      this.currentPage = page;
-      const startIndex = (this.currentPage - 1) * this.pageSize;
-      const endIndex = startIndex + this.pageSize;
-      this.itemsToDisplay = this.userData.slice(startIndex, endIndex);
-    }
-  }
+  // setPage(page: number) {
+  //   if (page >= 1 && page <= this.totalPages) {
+  //     this.currentPage = page;
+  //     const startIndex = (this.currentPage - 1) * this.pageSize;
+  //     const endIndex = startIndex + this.pageSize;
+  //     this.itemsToDisplay = this.userData.slice(startIndex, endIndex);
+  //   }
+  // }
 
 
   confirmUserDelete(userId: number) {
@@ -76,9 +79,6 @@ export class UserComponent implements OnInit {
         )
       }
     })
-    //
-      
-   
   }
 
   UserDelete(userId: number) {
@@ -88,6 +88,10 @@ export class UserComponent implements OnInit {
       this.fetchUser();
     })
 
+  }
+
+  pageChanged(newPage: number) {
+    this.currentPage = newPage;
   }
 
 }

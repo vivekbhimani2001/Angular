@@ -12,34 +12,42 @@ import { NotificationService } from 'src/app/services/notification-service.servi
 
 export class LoginComponent implements OnInit {
 
-  userForm!:FormGroup;
+  userForm!: FormGroup;
 
-  constructor(private userLogin: UserService, private router: Router, private formBuilder: FormBuilder,private notificationService:NotificationService) {}
-
- 
+  constructor(private userLogin: UserService, private router: Router, private formBuilder: FormBuilder, private notificationService: NotificationService) { }
 
   ngOnInit(): void {
-      this.userForm = this.formBuilder.group({
-      username: ['',[Validators.required]],
-      password: ['',[Validators.required]]
+    this.userForm = this.formBuilder.group({
+      email: ['', [Validators.required]],
+      password: ['', [Validators.required]]
     })
-
-    
   }
 
   onSubmit() {
-    if(this.userForm.valid){
+    if (this.userForm.valid) {
+      // console.log(this.userForm.value)
+      this.userLogin.UserLogin(this.userForm.value).subscribe(
+        {
+          next: (data: any) => {
 
-     // console.log(this.userForm.value)
-    this.userLogin.UserLogin(this.userForm.value).subscribe((result: any) => {
-      // Save the token
-      this.userLogin.SetToken(result.result.token);
+            if (data.isSuccess) {
+              this.router.navigate(['auth/Otp-Verify'])
+              this.notificationService.showSuccess("Otp Sent Sucessfully In Your Email Id.", "Login-User")
+            }
+            else {
+              this.notificationService.showError("Email Or Password Is Incorrect.","Login-User")
+            }
+            
 
-      // Redirect to the desired route
-      this.router.navigate(['users/user']);
-      this.notificationService.showSuccess("User Login Sucessfully","Login-User")
-    });
-  }
+          },
+          error: error => {
+            //this.errorMessage = error.message;
+            console.error('There was an error!', error);
+          }
+        }
+
+      );
+    }
   }
 
 }

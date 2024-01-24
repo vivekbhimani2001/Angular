@@ -1,1 +1,47 @@
-<p>product-details works!</p>
+<!-- <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <label for="name">Name:</label>
+    <input type="text" id="name" formControlName="name" />
+    <div *ngIf="form.get('name')?.touched && form.get('name')?.hasError('required')">
+      Name is required.
+    </div>
+  
+    <label for="city">City:</label>
+    <input type="text" id="city" formControlName="city" />
+    <div *ngIf="form.get('city')?.touched && form.get('city')?.hasError('required')">
+      City is required.
+    </div>
+  
+    <div formArrayName="checkboxes">
+      <div *ngFor="let checkbox of form.controls['checkboxes'].value; let i = index">
+        <label>
+          <input type="checkbox" [formControlName]="i" /> Checkbox {{ i + 1 }}
+        </label>
+      </div>
+    </div>
+  
+    <div *ngIf="form.get('checkboxes')?.hasError('atLeastOneCheckbox') && form.get('checkboxes')?.touched">
+      At least one checkbox must be selected.
+    </div>
+  
+    <button type="submit">Submit</button>
+  </form> -->
+  
+  <div class="container">
+    <h1>Product</h1>
+      
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <input type="text" formControlName="city" placeholder="Enter your city" />
+      <div *ngIf="form.get('city')?.touched && form.get('city')?.hasError('required')" class="error-message">
+        City is required.
+      </div>
+      <label formArrayName="orders" *ngFor="let order of ordersFormArray.controls; let i = index">
+        <input type="checkbox" [formControlName]="i"> 
+        {{webData[i].name}} 
+      </label>
+      <div *ngIf="form.get('orders')?.touched && form.get('orders')?.hasError('noCheckboxChecked')" class="error-message">
+        Please select at least one checkbox.
+      </div>
+      <br/>
+      <button class="btn btn-success" [disabled]="!form.valid || form.get('orders')?.hasError('noCheckboxChecked')">submit</button>
+    </form>
+  </div>
